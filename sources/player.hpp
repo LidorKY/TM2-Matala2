@@ -7,16 +7,14 @@ using namespace std;
 
 
 class Player{
-    string name_of_player = ""; // this field is private.
+    string name_of_player; // this field is private.
     int is_assigned_to_a_game; // this field is private.
 
     public:
     /*--constructors--*/
-    Player(){ //default constructor - doesn't really needed here. //inline constructor.
-        name_of_player = "don't use this constructor";
-    } 
+    Player();// outline constructor. 
 
-    Player(string name); // outline constructor. need to define it outside the class + use "this".
+    Player(string name); // outline constructor.
     // maybe need to add a destructor.
     /*----------------*/
 
@@ -29,7 +27,12 @@ class Player{
         return is_assigned_to_a_game;
     }
     void set_is_assigned_to_a_game(){
-        is_assigned_to_a_game = 1;
+        if(get_is_assigned_to_a_game() == 0){
+            is_assigned_to_a_game = 1;
+        }
+        else{
+            is_assigned_to_a_game = 0;
+        }
     }
     /*-------------*/
 

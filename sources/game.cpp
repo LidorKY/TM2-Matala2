@@ -5,7 +5,7 @@
 
 /*--outline constructor*/
 Game::Game(Player &p1, Player &p2){
-    if(p1.get_is_assigned_to_a_game() ==1){
+    if(p1.get_is_assigned_to_a_game() == 1){
         throw invalid_argument("can't assign the first player since he is is already assigned to a game");
     }
     if(p2.get_is_assigned_to_a_game() == 1){

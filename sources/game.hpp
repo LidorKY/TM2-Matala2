@@ -17,7 +17,7 @@ class Game{
     public:
     Game(){}
     /*--constructors--*/
-    Game(Player &p1, Player &p2); // outline constructor. need to define it outside the class + use "this".
+    Game(Player &player1, Player &player2); // outline constructor. need to define it outside the class + use "this".
     // maybe need to add a destructor.
     /*----------------*/
 
