@@ -23,7 +23,7 @@ class Player{
     int stacksize(); // prints the amount of cards left. should be 21 but can be less if a draw was played.
     int cardesTaken(); // prints the amount of cards this player has won. 
     string get_name();
-    int get_is_assigned_to_a_game(){
+    int get_is_assigned_to_a_game() const {
         return is_assigned_to_a_game;
     }
     void set_is_assigned_to_a_game(){
