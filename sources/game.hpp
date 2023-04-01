@@ -1,8 +1,7 @@
-#ifndef FLAG
-#define FLAG
-
+#pragma once
 #include <iostream>
 #include "player.hpp"
+#include "card.hpp"
 using namespace std;
 
 namespace ariel{
@@ -13,6 +12,7 @@ namespace ariel{
 class Game{
     Player first_player; // the first player in the game.
     Player second_player; // the first player in the game.
+    Card deck_of_cards [52];
 
     public:
     Game(){}
@@ -29,7 +29,10 @@ class Game{
     void printWiner(); // prints the name of the winning player.
     void printLog(); // prints all the turns played one line per turn (same format as game.printLastTurn()).
     void printStats(); // for each player prints basic statistics: win rate, cards won, <other stats you want to print>. Also print the draw rate and amount of draws that happand. (draw within a draw counts as 2 draws. )
+
+    void print_deck_of_cards();
+    void shuffle_cards();
+    void deal_cards();
     /*-------------*/
 
 };
-#endif

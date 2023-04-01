@@ -1,5 +1,4 @@
-#ifndef GAME_FLAG
-#define GAME_FLAG
+#pragma once
 #include <iostream>
 #include <stdio.h>
 #include <string>
@@ -37,4 +36,3 @@ class Player{
     /*-------------*/
 
 };
-#endif
