@@ -15,30 +15,36 @@ using namespace chrono;
 
 
 /*--outline constructor*/
-Game::Game(Player &p1, Player &p2){
-    if(p1.get_is_assigned_to_a_game() == 1){
+
+Player p1_("");
+Player p2_("");
+Game::Game(): first_player(p1_),second_player(p2_){
+
+}
+
+Game::Game(Player &p1, Player &p2):first_player(p1),second_player(p2){
+    if(this->first_player.get_is_assigned_to_a_game() == 1){
         throw invalid_argument("can't assign the first player since he is is already assigned to a game");
     }
-    if(p2.get_is_assigned_to_a_game() == 1){
+    if(this->second_player.get_is_assigned_to_a_game() == 1){
         throw invalid_argument("can't assign the second player since he is is already assigned to a game");
     }
 
-    this->first_player = p1;
-    this->second_player = p2;
-    p1.set_is_assigned_to_a_game();
-    p2.set_is_assigned_to_a_game();
+    this->first_player.set_is_assigned_to_a_game();
+    this->second_player.set_is_assigned_to_a_game();
 
     initialize_deck_of_cards(); // working
-    // print_deck_of_cards(); //working 
-    shuffle_cards();
-    print_deck_of_cards();
+    shuffle_cards(); //working
+    deal_cards();// working
 
+    this->first_player.print_My_Cards_To_Play();
+    cout << "--------------------------------------------------------------";
+    this->second_player.print_My_Cards_To_Play();
 
+    this->first_player.stack_size = 26;
+    
+    this->second_player.stack_size = 26;
 
-
-    deal_cards();
-    p1.stack_size = 26;
-    p2.stack_size = 26;
     
 };
 
@@ -153,6 +159,15 @@ void Game::shuffle_cards(){
 }
 
 void Game::deal_cards(){
-    
+    for(size_t i = 0; i < 52; i++){
+        Card temp;
+        temp = this->deck_of_cards.at(i);
+        if(i%2 ==0){
+            this->first_player.My_Cards_To_Play.push_back(temp);
+        }
+        else{
+            this->second_player.My_Cards_To_Play.push_back(temp);
+        }
+    }
 }
 /*--------------------*/

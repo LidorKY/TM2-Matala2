@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string>
 #include "player.hpp"
+#include "card.hpp"
 using namespace std;
 
 Player::Player(){ //default constructor - doesn't really needed here. //outline constructor.
@@ -32,6 +33,19 @@ int Player::cardesTaken(){
     }
     else{
         return this->cards_taken;
+    }
+}
+
+void Player::print_My_Cards_To_Play(){
+    for(size_t i = 0; i <  this->My_Cards_To_Play.size(); i++){
+        this->My_Cards_To_Play[i].print_card();
+        cout << "\n" << endl;
+    }
+}
+void Player::print_My_Cards_Taken(){
+    for(size_t i = 0; i <  this->My_Cards_Taken.size(); i++){
+        this->My_Cards_Taken.at(i).print_card();
+        cout << "\n" << endl;
     }
 }
 /*---------------------*/

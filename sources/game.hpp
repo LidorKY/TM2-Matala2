@@ -13,11 +13,11 @@ namespace ariel{
 class Game{
     public:
 
-    Player first_player; // the first player in the game.
-    Player second_player; // the first player in the game.
+    Player &first_player; // the first player in the game.
+    Player &second_player; // the first player in the game.
     vector <Card> deck_of_cards;
 
-    Game(){}
+    Game();
     /*--constructors--*/
     Game(Player &player1, Player &player2); // outline constructor. need to define it outside the class + use "this".
     // maybe need to add a destructor.
