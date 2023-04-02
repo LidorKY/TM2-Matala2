@@ -8,14 +8,14 @@ using namespace std;
 Player::Player(){ //default constructor - doesn't really needed here. //outline constructor.
     this->name_of_player = "don't use this constructor";
     this->is_assigned_to_a_game = 0;
-    this->cards_taken = 0;
-    this->stack_size = 0;
 } 
 
 // outline constructor.
 Player::Player(string name){
     this->name_of_player = name;
     this->is_assigned_to_a_game = 0;
+    this->My_Cards_Taken.size();
+    this->My_Cards_To_Play.size();
 };
 
 /*--outline functions--*/
@@ -24,7 +24,7 @@ int Player::stacksize(){
         return 0;
     }
     else{
-        return this->stack_size;
+        return this->My_Cards_To_Play.size();
     }
 }
 int Player::cardesTaken(){
@@ -32,7 +32,7 @@ int Player::cardesTaken(){
         return 0;
     }
     else{
-        return this->cards_taken;
+        return this->My_Cards_Taken.size();
     }
 }
 

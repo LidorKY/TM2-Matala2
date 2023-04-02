@@ -12,8 +12,6 @@ class Player{
 
     string name_of_player; // this field is private.
     int is_assigned_to_a_game; // this field is private.
-    int stack_size;
-    int cards_taken;
     vector <Card> My_Cards_To_Play;
     vector <Card> My_Cards_Taken;
 

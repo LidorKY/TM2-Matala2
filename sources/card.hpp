@@ -4,12 +4,14 @@
 #include <string>
 using namespace std;
 
-class Card{
+class Card{ 
+    public:
+    
     string kind_of_card;
     int card_value;
     string special_cards;
 
-    public:
+   
     /*--constructors--*/
     Card();// outline constructor.
     Card(string kind, int value, string special); // outline constructor. need to define it outside the class + use "this".

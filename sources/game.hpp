@@ -16,6 +16,7 @@ class Game{
     Player &first_player; // the first player in the game.
     Player &second_player; // the first player in the game.
     vector <Card> deck_of_cards;
+    vector <Card> on_the_table;
 
     Game();
     /*--constructors--*/
