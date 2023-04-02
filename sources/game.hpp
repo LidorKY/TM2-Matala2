@@ -2,6 +2,7 @@
 #include <iostream>
 #include "player.hpp"
 #include "card.hpp"
+#include <vector>
 using namespace std;
 
 namespace ariel{
@@ -10,11 +11,12 @@ namespace ariel{
 
 
 class Game{
+    public:
+
     Player first_player; // the first player in the game.
     Player second_player; // the first player in the game.
-    Card deck_of_cards [52];
+    vector <Card> deck_of_cards;
 
-    public:
     Game(){}
     /*--constructors--*/
     Game(Player &player1, Player &player2); // outline constructor. need to define it outside the class + use "this".
@@ -31,6 +33,7 @@ class Game{
     void printStats(); // for each player prints basic statistics: win rate, cards won, <other stats you want to print>. Also print the draw rate and amount of draws that happand. (draw within a draw counts as 2 draws. )
 
     void print_deck_of_cards();
+    void initialize_deck_of_cards();
     void shuffle_cards();
     void deal_cards();
     /*-------------*/
