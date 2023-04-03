@@ -47,16 +47,32 @@ void Game::playTurn(){
     temp1 = this->first_player.My_Cards_To_Play.back();
     temp2 = this->second_player.My_Cards_To_Play.back();
     if(temp1.card_value > temp2.card_value){
-        this->first_player.My_Cards_Taken.push_back(temp1);
-        this->first_player.My_Cards_Taken.push_back(temp2);
-        this->first_player.My_Cards_To_Play.pop_back();
-        this->second_player.My_Cards_To_Play.pop_back();
+        if(temp1.card_value != 2 && temp2.card_value == 1){
+            this->second_player.My_Cards_Taken.push_back(temp1);
+            this->second_player.My_Cards_Taken.push_back(temp2);
+            this->first_player.My_Cards_To_Play.pop_back();
+            this->second_player.My_Cards_To_Play.pop_back();
+        }
+        else{
+            this->first_player.My_Cards_Taken.push_back(temp1);
+            this->first_player.My_Cards_Taken.push_back(temp2);
+            this->first_player.My_Cards_To_Play.pop_back();
+            this->second_player.My_Cards_To_Play.pop_back();
+        }
     }
     else if(temp1.card_value < temp2.card_value){
-        this->second_player.My_Cards_Taken.push_back(temp1);
-        this->second_player.My_Cards_Taken.push_back(temp2);
-        this->first_player.My_Cards_To_Play.pop_back();
-        this->second_player.My_Cards_To_Play.pop_back();
+        if(temp1.card_value == 1 && temp2.card_value != 2){
+            this->first_player.My_Cards_Taken.push_back(temp1);
+            this->first_player.My_Cards_Taken.push_back(temp2);
+            this->first_player.My_Cards_To_Play.pop_back();
+            this->second_player.My_Cards_To_Play.pop_back();
+        }
+        else{
+            this->second_player.My_Cards_Taken.push_back(temp1);
+            this->second_player.My_Cards_Taken.push_back(temp2);
+            this->first_player.My_Cards_To_Play.pop_back();
+            this->second_player.My_Cards_To_Play.pop_back(); 
+        }
     }
     else{
         while(temp1.card_value == temp2.card_value){
@@ -70,7 +86,7 @@ void Game::playTurn(){
                 }
                 unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
                 shuffle (this->on_the_table.begin(), this->on_the_table.end(), default_random_engine(seed));
-                for(size_t i = 0; i < 52; i++){
+                for(size_t i = 0; i < this->on_the_table.size(); i++){
                     Card temp;
                     temp = this->deck_of_cards.at(i);
                     if(i%2 ==0){
@@ -138,6 +154,11 @@ void Game::playAll(){
     while(this->first_player.My_Cards_To_Play.size() != 0){
         playTurn();
     }
+    cout << this->first_player.stacksize() << "---hello1" << endl;
+    cout << this->first_player.cardesTaken() << "---hello2" << endl;
+    cout << this->second_player.stacksize() << "---hello3" <<  endl;
+    cout << this->second_player.cardesTaken() << "---hello4" << endl;
+
 }
 
 void Game::printWiner(){
