@@ -133,12 +133,24 @@ void Game::playTurn(){
                 this->second_player.My_Cards_Taken.push_back(temp2);
                 this->first_player.My_Cards_To_Play.pop_back();
                 this->second_player.My_Cards_To_Play.pop_back();
+                Card helper1;
+                while(this->on_the_table.size() != 0){
+                    helper1 = this->on_the_table.back();
+                    this->second_player.My_Cards_Taken.push_back(helper1);
+                    this->on_the_table.pop_back();
+                }
             }
             else{
                 this->first_player.My_Cards_Taken.push_back(temp1);
                 this->first_player.My_Cards_Taken.push_back(temp2);
                 this->first_player.My_Cards_To_Play.pop_back();
                 this->second_player.My_Cards_To_Play.pop_back();
+                Card helper2;
+                while(this->on_the_table.size() != 0){
+                    helper2 = this->on_the_table.back();
+                    this->first_player.My_Cards_Taken.push_back(helper2);
+                    this->on_the_table.pop_back();
+                }
             }
         }
         else{
@@ -147,12 +159,24 @@ void Game::playTurn(){
                 this->first_player.My_Cards_Taken.push_back(temp2);
                 this->first_player.My_Cards_To_Play.pop_back();
                 this->second_player.My_Cards_To_Play.pop_back();
+                Card helper3;
+                while(this->on_the_table.size() != 0){
+                    helper3 = this->on_the_table.back();
+                    this->first_player.My_Cards_Taken.push_back(helper3);
+                    this->on_the_table.pop_back();
+                }
             }
             else{
                 this->second_player.My_Cards_Taken.push_back(temp1);
                 this->second_player.My_Cards_Taken.push_back(temp2);
                 this->first_player.My_Cards_To_Play.pop_back();
                 this->second_player.My_Cards_To_Play.pop_back(); 
+                Card helper4;
+                while(this->on_the_table.size() != 0){
+                    helper4 = this->on_the_table.back();
+                    this->second_player.My_Cards_Taken.push_back(helper4);
+                    this->on_the_table.pop_back();
+                }
             }
         }
     }
