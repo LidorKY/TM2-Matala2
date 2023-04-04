@@ -77,82 +77,85 @@ void Game::playTurn(){
             this->second_player.My_Cards_To_Play.pop_back(); 
         }
     }
-    // else{
-    //     this->first_player.My_Cards_Taken.push_back(temp1);
-    //     this->second_player.My_Cards_Taken.push_back(temp2);
-    //     this->first_player.My_Cards_To_Play.pop_back();
-    //     this->second_player.My_Cards_To_Play.pop_back(); 
-    // }
-    // else{
-    //     while(temp1.card_value == temp2.card_value){
-    //         this->on_the_table.push_back(temp1);
-    //         this->on_the_table.push_back(temp2);
-    //         this->first_player.My_Cards_To_Play.pop_back();
-    //         this->second_player.My_Cards_To_Play.pop_back();
-    //         if(this->first_player.My_Cards_To_Play.size() == 0){
-    //             if(this->on_the_table.size() == 2){
-    //                 return;
-    //             }
-    //             unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-    //             shuffle (this->on_the_table.begin(), this->on_the_table.end(), default_random_engine(seed));
-    //             for(size_t i = 0; i < this->on_the_table.size(); i++){
-    //                 Card temp;
-    //                 temp = this->deck_of_cards.at(i);
-    //                 if(i%2 ==0){
-    //                     this->first_player.My_Cards_To_Play.push_back(temp);
-    //                 }
-    //                 else{
-    //                     this->second_player.My_Cards_To_Play.push_back(temp);
-    //                 }
-    //             }
-    //         }
-    //         else{
-    //             temp1 = this->first_player.My_Cards_To_Play.back();
-    //             temp2 = this->second_player.My_Cards_To_Play.back();   
-    //             this->on_the_table.push_back(temp1);
-    //             this->on_the_table.push_back(temp2);  
-    //             this->first_player.My_Cards_To_Play.pop_back();
-    //             this->second_player.My_Cards_To_Play.pop_back(); 
-    //         }
-    //         if(this->first_player.My_Cards_To_Play.size() == 0){
-    //             unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-    //             shuffle (this->on_the_table.begin(), this->on_the_table.end(), default_random_engine(seed));
-    //             for(size_t i = 0; i < 52; i++){
-    //                 Card temp;
-    //                 temp = this->deck_of_cards.at(i);
-    //                 if(i%2 ==0){
-    //                     this->first_player.My_Cards_To_Play.push_back(temp);
-    //                 }
-    //                 else{
-    //                     this->second_player.My_Cards_To_Play.push_back(temp);
-    //                 }
-    //             }
-    //         }
-    //         else{
-    //             temp1 = this->first_player.My_Cards_To_Play.back();
-    //             temp2 = this->second_player.My_Cards_To_Play.back();  
-    //         }
-    //     }
-    //     Card temp3;
-    //     if(temp1.card_value > temp2.card_value){
-    //         this->on_the_table.push_back(temp1);
-    //         this->on_the_table.push_back(temp2);  
-    //         while(this->on_the_table.size() != 0){
-    //             temp3 = this->on_the_table.back();
-    //             this->first_player.My_Cards_Taken.push_back(temp3);
-    //             this->on_the_table.pop_back();
-    //         }
-    //     }
-    //     else{
-    //         this->on_the_table.push_back(temp1);
-    //         this->on_the_table.push_back(temp2);  
-    //         while(this->on_the_table.size() != 0){
-    //             temp3 = this->on_the_table.back();
-    //             this->second_player.My_Cards_Taken.push_back(temp3);
-    //             this->on_the_table.pop_back();
-    //         } 
-    //     }
-    // }
+    else{
+        while(temp1.card_value == temp2.card_value){
+            // add them to the table
+            this->on_the_table.push_back(temp1);
+            this->on_the_table.push_back(temp2);
+            // delete them from players
+            this->first_player.My_Cards_To_Play.pop_back();
+            this->second_player.My_Cards_To_Play.pop_back();
+            //check if cards to play = 0
+            size_t size = 0;
+            size = this->on_the_table.size();
+            if(this->first_player.My_Cards_To_Play.size() == 0){
+                for(size_t i = 0; i < size; i++){
+                    Card temporary;
+                    temporary = this->deck_of_cards.at(i);
+                    if(i%2 ==0){
+                        this->first_player.My_Cards_Taken.push_back(temporary);
+                    }
+                    else{
+                        this->second_player.My_Cards_Taken.push_back(temporary);
+                    }
+                }
+                return; //since there is no more cards.
+            }
+            //if there is more cards then we need to burn one.
+            temp1 = this->first_player.My_Cards_To_Play.back();
+            temp2 = this->second_player.My_Cards_To_Play.back();
+            this->on_the_table.push_back(temp1);
+            this->on_the_table.push_back(temp2);
+            this->first_player.My_Cards_To_Play.pop_back();
+            this->second_player.My_Cards_To_Play.pop_back();
+            //check if cards to play = 0
+            size_t size1 = 0;
+            size1 = this->on_the_table.size();
+            if(this->first_player.My_Cards_To_Play.size() == 0){
+                for(size_t i = 0; i < size; i++){
+                    Card temporary1;
+                    temporary1 = this->deck_of_cards.at(i);
+                    if(i%2 ==0){
+                        this->first_player.My_Cards_Taken.push_back(temporary1);
+                    }
+                    else{
+                        this->second_player.My_Cards_Taken.push_back(temporary1);
+                    }
+                }
+                return; //since there is no more cards.
+            }
+            temp1 = this->first_player.My_Cards_To_Play.back();
+            temp2 = this->second_player.My_Cards_To_Play.back();
+        } // end of while.
+        if(temp1.card_value > temp2.card_value){
+            if(temp1.card_value != 2 && temp2.card_value == 1){
+                this->second_player.My_Cards_Taken.push_back(temp1);
+                this->second_player.My_Cards_Taken.push_back(temp2);
+                this->first_player.My_Cards_To_Play.pop_back();
+                this->second_player.My_Cards_To_Play.pop_back();
+            }
+            else{
+                this->first_player.My_Cards_Taken.push_back(temp1);
+                this->first_player.My_Cards_Taken.push_back(temp2);
+                this->first_player.My_Cards_To_Play.pop_back();
+                this->second_player.My_Cards_To_Play.pop_back();
+            }
+        }
+        else{
+            if(temp1.card_value == 1 && temp2.card_value != 2){
+                this->first_player.My_Cards_Taken.push_back(temp1);
+                this->first_player.My_Cards_Taken.push_back(temp2);
+                this->first_player.My_Cards_To_Play.pop_back();
+                this->second_player.My_Cards_To_Play.pop_back();
+            }
+            else{
+                this->second_player.My_Cards_Taken.push_back(temp1);
+                this->second_player.My_Cards_Taken.push_back(temp2);
+                this->first_player.My_Cards_To_Play.pop_back();
+                this->second_player.My_Cards_To_Play.pop_back(); 
+            }
+        }
+    }
 }
 
 void Game::printLastTurn(){
