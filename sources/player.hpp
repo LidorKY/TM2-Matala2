@@ -10,8 +10,8 @@ using namespace std;
 class Player{
     public:
 
-    string name_of_player; // this field is private.
-    int is_assigned_to_a_game; // this field is private.
+    string name_of_player; 
+    int is_assigned_to_a_game;
     vector <Card> My_Cards_To_Play;
     vector <Card> My_Cards_Taken;
 
@@ -29,17 +29,8 @@ class Player{
     void print_My_Cards_To_Play();
     void print_My_Cards_Taken();
     string get_name();
-    int get_is_assigned_to_a_game() const {
-        return is_assigned_to_a_game;
-    }
-    void set_is_assigned_to_a_game(){
-        if(get_is_assigned_to_a_game() == 0){
-            is_assigned_to_a_game = 1;
-        }
-        else{
-            is_assigned_to_a_game = 0;
-        }
-    }
+    int get_is_assigned_to_a_game() const;
+    void set_is_assigned_to_a_game();
     /*-------------*/
 
 };

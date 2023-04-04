@@ -48,4 +48,17 @@ void Player::print_My_Cards_Taken(){
         cout << "\n" << endl;
     }
 }
+
+int Player::get_is_assigned_to_a_game() const {
+        return is_assigned_to_a_game;
+    }
+
+void Player::set_is_assigned_to_a_game(){
+    if(get_is_assigned_to_a_game() == 0){
+        is_assigned_to_a_game = 1;
+    }
+    else{
+        is_assigned_to_a_game = 0;
+    }
+}
 /*---------------------*/
