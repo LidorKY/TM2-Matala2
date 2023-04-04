@@ -190,10 +190,6 @@ void Game::playAll(){
     while(this->first_player.My_Cards_To_Play.size() != 0){
         playTurn();
     }
-    cout << this->first_player.stacksize() << "---hello1" << endl;
-    cout << this->first_player.cardesTaken() << "---hello2" << endl;
-    cout << this->second_player.stacksize() << "---hello3" <<  endl;
-    cout << this->second_player.cardesTaken() << "---hello4" << endl;
 }
 
 void Game::printWiner(){
