@@ -3,6 +3,7 @@
 #include "player.hpp"
 #include "card.hpp"
 #include <vector>
+#include <list>
 using namespace std;
 
 namespace ariel{
@@ -17,6 +18,7 @@ class Game{
     Player &second_player; // the first player in the game.
     vector <Card> deck_of_cards;
     vector <Card> on_the_table;
+    list <string> print_last_turn;
 
     Game();
     /*--constructors--*/
