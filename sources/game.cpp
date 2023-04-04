@@ -33,6 +33,12 @@ Game::Game(Player &p1, Player &p2):first_player(p1),second_player(p2){
     this->first_player.set_is_assigned_to_a_game();
     this->second_player.set_is_assigned_to_a_game();
     this->print_last_turn.clear();
+    this->deck_of_cards.clear();
+    this->on_the_table.clear();
+    this->first_player.My_Cards_Taken.clear();
+    this->first_player.My_Cards_To_Play.clear();
+    this->second_player.My_Cards_Taken.clear();
+    this->second_player.My_Cards_To_Play.clear();
     initialize_deck_of_cards(); // working
     shuffle_cards(); //working
     deal_cards();// working
@@ -217,10 +223,10 @@ void Game::playAll(){
 
 void Game::printWiner(){
     if(this->first_player.My_Cards_Taken.size() > this->second_player.My_Cards_Taken.size()){
-        cout << "the winner is the first player" << endl;
+        cout << "the winner is: " << this->first_player.name_of_player << endl;
     }
     else if(this->first_player.My_Cards_Taken.size() < this->second_player.My_Cards_Taken.size()){
-        cout << "the winner is the second player" << endl;
+        cout << "the winner is: " << this->second_player.name_of_player << endl;
     }
     else{
         throw invalid_argument("there is a tie between the players.");
