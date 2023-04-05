@@ -39,6 +39,10 @@ Game::Game(Player &p1, Player &p2):first_player(p1),second_player(p2){
     this->first_player.My_Cards_To_Play.clear();
     this->second_player.My_Cards_Taken.clear();
     this->second_player.My_Cards_To_Play.clear();
+    this->win1 = 0;
+    this->win2 = 0;
+    this->draw = 0;
+    this->num_of_rounds = 0;
     initialize_deck_of_cards(); // working
     shuffle_cards(); //working
     deal_cards();// working
@@ -57,6 +61,7 @@ void Game::playTurn(){
     Card temp1, temp2;
     temp1 = this->first_player.My_Cards_To_Play.back();
     temp2 = this->second_player.My_Cards_To_Play.back();
+    // this->num_of_rounds++;
     string str1, str2;
     str1 = this->first_player.name_of_player + " has played " + to_string(temp1.card_value) + " of " + temp1.kind_of_card + ", ";
     str2 = this->second_player.name_of_player + " has played " + to_string(temp2.card_value) + " of " + temp2.kind_of_card + ". ";
@@ -67,6 +72,7 @@ void Game::playTurn(){
             this->second_player.My_Cards_Taken.push_back(temp2);
             str1 = str1 + this->second_player.name_of_player + " won this round.\n";
             this->print_last_turn.push_back(str1);
+            this->win2++;
             this->first_player.My_Cards_To_Play.pop_back();
             this->second_player.My_Cards_To_Play.pop_back();
         }
@@ -75,6 +81,7 @@ void Game::playTurn(){
             this->first_player.My_Cards_Taken.push_back(temp2);
             str1 = str1 + this->first_player.name_of_player + " won this round.\n";
             this->print_last_turn.push_back(str1);
+            this->win1++;
             this->first_player.My_Cards_To_Play.pop_back();
             this->second_player.My_Cards_To_Play.pop_back();
         }
@@ -85,6 +92,7 @@ void Game::playTurn(){
             this->first_player.My_Cards_Taken.push_back(temp2);
             str1 = str1 + this->first_player.name_of_player + " won this round.\n";
             this->print_last_turn.push_back(str1);
+            this->win1++;
             this->first_player.My_Cards_To_Play.pop_back();
             this->second_player.My_Cards_To_Play.pop_back();
         }
@@ -93,6 +101,7 @@ void Game::playTurn(){
             this->second_player.My_Cards_Taken.push_back(temp2);
             str1 = str1 + this->second_player.name_of_player + " won this round.\n";
             this->print_last_turn.push_back(str1);
+            this->win2++;
             this->first_player.My_Cards_To_Play.pop_back();
             this->second_player.My_Cards_To_Play.pop_back(); 
         }
@@ -101,6 +110,7 @@ void Game::playTurn(){
         string str3, str4;
         str1 = str1 + " Draw. ";
         while(temp1.card_value == temp2.card_value){
+            this->draw++;
             this->on_the_table.push_back(temp1);
             this->on_the_table.push_back(temp2);
             this->first_player.My_Cards_To_Play.pop_back();
@@ -118,6 +128,9 @@ void Game::playTurn(){
                         this->second_player.My_Cards_Taken.push_back(temporary);
                     }
                 }
+                str1 = str1 + "1 last round ended in draw.\n";
+                this->print_last_turn.push_back(str1);
+                this->num_of_rounds++;
                 return;
             }
             temp1 = this->first_player.My_Cards_To_Play.back();
@@ -139,7 +152,10 @@ void Game::playTurn(){
                         this->second_player.My_Cards_Taken.push_back(temporary1);
                     }
                 }
-                return; //since there is no more cards.
+                str1 = str1 + "2 last round ended in draw.\n";
+                this->print_last_turn.push_back(str1);
+                this->num_of_rounds++;
+                return;
             }
             temp1 = this->first_player.My_Cards_To_Play.back();
             temp2 = this->second_player.My_Cards_To_Play.back();
@@ -154,6 +170,7 @@ void Game::playTurn(){
                 this->second_player.My_Cards_Taken.push_back(temp2);
                 str1 = str1 + this->second_player.name_of_player + " won this round.\n";
                 this->print_last_turn.push_back(str1);
+                this->win2++;
                 this->first_player.My_Cards_To_Play.pop_back();
                 this->second_player.My_Cards_To_Play.pop_back();
                 Card helper1;
@@ -168,6 +185,7 @@ void Game::playTurn(){
                 this->first_player.My_Cards_Taken.push_back(temp2);
                 str1 = str1 + this->first_player.name_of_player + " won this round.\n";
                 this->print_last_turn.push_back(str1);
+                this->win1++;
                 this->first_player.My_Cards_To_Play.pop_back();
                 this->second_player.My_Cards_To_Play.pop_back();
                 Card helper2;
@@ -184,6 +202,7 @@ void Game::playTurn(){
                 this->first_player.My_Cards_Taken.push_back(temp2);
                 str1 = str1 + this->first_player.name_of_player + " won this round.\n";
                 this->print_last_turn.push_back(str1);
+                this->win1++;
                 this->first_player.My_Cards_To_Play.pop_back();
                 this->second_player.My_Cards_To_Play.pop_back();
                 Card helper3;
@@ -198,6 +217,7 @@ void Game::playTurn(){
                 this->second_player.My_Cards_Taken.push_back(temp2);
                 str1 = str1 + this->second_player.name_of_player + " won this round.\n";
                 this->print_last_turn.push_back(str1);
+                this->win2++;
                 this->first_player.My_Cards_To_Play.pop_back();
                 this->second_player.My_Cards_To_Play.pop_back(); 
                 Card helper4;
@@ -209,6 +229,7 @@ void Game::playTurn(){
             }
         }
     }
+    this->num_of_rounds++;
 }
 
 void Game::printLastTurn(){
@@ -241,7 +262,22 @@ void Game::printLog(){
 }
 
 void Game::printStats(){
-
+    //win rate
+    this->win1 = (this->win1/this->num_of_rounds)*100;
+    cout << this->first_player.name_of_player << "'s win rate: " << to_string(this->win1) << "%.\n" << endl;
+    this->win2 = (this->win2/this->num_of_rounds)*100;
+    cout << this->second_player.name_of_player << "'s win rate: " << to_string(this->win2) << "%.\n" << endl;
+    // cards won
+    cout << this->first_player.name_of_player << " got: " << to_string(this->first_player.cardesTaken()) << " cards.\n" << endl;
+    cout << this->second_player.name_of_player << " got: " << to_string(this->second_player.cardesTaken()) << " cards.\n" << endl;
+    // amount of draws
+    cout <<  "Amount of draws: " << to_string(this->draw) << ".\n" << endl;
+    //draw rate 
+    this->draw = (this->draw/this->num_of_rounds)*100;
+    cout << "Draw rate: " << to_string(this->draw) << "%.\n" << endl;
+    //amount of rounds
+    cout << "Amount of rounds: " << to_string(this->num_of_rounds) << ".\n" << endl;
+    
 }
 
 void Game::initialize_deck_of_cards(){

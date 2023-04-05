@@ -19,6 +19,8 @@ class Game{
     vector <Card> deck_of_cards;
     vector <Card> on_the_table;
     list <string> print_last_turn;
+    int num_of_rounds;
+    double win1, win2, draw;
 
     Game();
     /*--constructors--*/
