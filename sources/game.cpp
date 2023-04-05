@@ -142,7 +142,7 @@ void Game::playTurn(){
             size_t size1 = 0;
             size1 = this->on_the_table.size();
             if(this->first_player.My_Cards_To_Play.size() == 0){
-                for(size_t i = 0; i < size; i++){
+                for(size_t i = 0; i < size1; i++){
                     Card temporary1;
                     temporary1 = this->deck_of_cards.at(i);
                     if(i%2 ==0){
