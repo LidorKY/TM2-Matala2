@@ -250,7 +250,7 @@ void Game::printWiner(){
         cout << "the winner is: " << this->second_player.name_of_player << endl;
     }
     else{
-        throw invalid_argument("there is a tie between the players.");
+        cout << "there is a tie between the players." << endl;
     }
 }
 
