@@ -51,7 +51,7 @@ Game::Game(Player &p1, Player &p2):first_player(p1),second_player(p2){
 
 /*--outline functions--*/
 void Game::playTurn(){
-    if(this->first_player.name_of_player == this->second_player.name_of_player){
+    if(&this->first_player == &this->second_player){
         throw invalid_argument("cant play because it is the same player.");
     }
     if(this->first_player.My_Cards_To_Play.size() == 0){
